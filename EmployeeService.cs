@@ -51,13 +51,13 @@ namespace ConsoleAdoDotNet
 
 
                 MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@id", Guid.NewGuid());
-                command.Parameters.AddWithValue("@firstname", firstName);
-                command.Parameters.AddWithValue("@lastname", lastName);
-                command.Parameters.AddWithValue("@email", email);
-                command.Parameters.AddWithValue("@department", department);
-                command.Parameters.AddWithValue("@Hiredate", hireDate);
-                command.Parameters.AddWithValue("@salary", salary);
+                 command.Parameters.AddWithValue("@id", Guid.NewGuid());
+                 command.Parameters.AddWithValue("@firstname", firstName);
+                 command.Parameters.AddWithValue("@lastname", lastName);
+                 command.Parameters.AddWithValue("@email", email);
+                 command.Parameters.AddWithValue("@department", department);
+                 command.Parameters.AddWithValue("@Hiredate", hireDate);
+                 command.Parameters.AddWithValue("@salary", salary);
 
                 try
                 {
@@ -108,7 +108,7 @@ namespace ConsoleAdoDotNet
             }
         }
 
-        public void ViewEmployeeById()
+        public async Task ViewEmployeeById()
         {
             Console.Write("\nEnter Employee ID: ");
 
@@ -121,13 +121,13 @@ namespace ConsoleAdoDotNet
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 string query = "SELECT * FROM Employees WHERE id = @id";
-                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlCommand command =  new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
 
                 try
                 {
-                    connection.Open();
-                    var reader = command.ExecuteReader();
+                    await connection.OpenAsync();
+                    var reader = await command.ExecuteReaderAsync();
 
                     if (reader.HasRows)
                     {
@@ -153,7 +153,7 @@ namespace ConsoleAdoDotNet
             }
         }
 
-        public void UpdateEmployee()
+        public async Task  UpdateEmployee()
         {
             Console.Write("\nEnter Employee ID to update: ");
 
@@ -172,7 +172,7 @@ namespace ConsoleAdoDotNet
 
                 try
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     int employeeCount = (int)checkCommand.ExecuteScalar();
                     if (employeeCount == 0)
                     {
@@ -240,7 +240,7 @@ namespace ConsoleAdoDotNet
 
                 try
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
@@ -254,7 +254,7 @@ namespace ConsoleAdoDotNet
             }
         }
 
-        public void DeleteEmployee()
+        public async Task DeleteEmployee()
         {
             Console.Write("\nEnter Employee ID to delete: ");
 
@@ -266,13 +266,13 @@ namespace ConsoleAdoDotNet
 
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
-                string query = "DELETE FROM Employees WHERE id = @id";
+                string query = "DELETE FROM employees WHERE id = @id";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
 
                 try
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConsoleAdoDotNet")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+285a36817dafad3d8719dc267bb38b90f400c8b0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16cd8abc3849bc166fbef12ff6c2049f9da453ae")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConsoleAdoDotNet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConsoleAdoDotNet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
